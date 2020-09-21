@@ -1,0 +1,97 @@
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('eleveurs.tab_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="tab-pane <?php echo $active_tab == 'eleveurs_create' ? 'active' : NULL; ?>" id="tab_eleveurs_create">
+    <form action="" method="post" name="eleveurs_create" class="form-horizontal">
+        <div class="user-form">
+            <?php
+            if (isset($errors)) {
+                foreach ($errors as $error) {
+                    ?>
+                    <div class="text-danger"><?php echo array_get($error, 0); ?></div>
+                    <?php
+                }
+            }
+            ?>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_eleveur_fName"><?php echo Lang::get('Prenom'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[eleveur][fName]" id="create_eleveur_fName" class="form-control" type="text" placeholder="<?php echo Lang::get('Prenom'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_eleveur_lName"><?php echo Lang::get('Nom'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[eleveur][lName]" id="create_eleveur_lName" class="form-control" type="text" placeholder="<?php echo Lang::get('Nom'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_eleveur_phone"><?php echo Lang::get('Téléphone'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[eleveur][phone]" id="create_eleveur_phone" class="form-control" type="text" placeholder="<?php echo Lang::get('Téléphone'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_eleveur_email"><?php echo Lang::get('Email'), "*"; ?></label>
+                <div class="col-lg-4">
+                    <input name="create[eleveur][email]" id="create_eleveur_email" class="form-control" type="text" placeholder="<?php echo Lang::get('Email'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_eleveur_cin"><?php echo Lang::get('CIN'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[eleveur][cin]" id="create_eleveur_cin" class="form-control" type="text" placeholder="<?php echo Lang::get('CIN'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_eleveur_department"><?php echo Lang::get('Department'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[eleveur][department]" id="create_eleveur_department" class="form-control" type="text" placeholder="<?php echo Lang::get('Department'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_eleveur_cSection"><?php echo Lang::get('Section communale'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[eleveur][cSection]" id="create_eleveur_cSection" class="form-control" type="text" placeholder="<?php echo Lang::get('Section communale'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_eleveur_so"><?php echo Lang::get('Numéro so'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[eleveur][so]" id="create_eleveur_so" class="form-control" type="text" placeholder="<?php echo Lang::get('Numéro so'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_eleveur_idResepag"><?php echo Lang::get('IdResepag'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[eleveur][idResepag]" id="create_eleveur_idResepag" class="form-control" type="text" placeholder="<?php echo Lang::get('IdResepag'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_eleveur_idEleveur"><?php echo Lang::get('ID Eleveur'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[eleveur][idEleveur]" id="create_eleveur_idEleveur" class="form-control" type="text" placeholder="<?php echo Lang::get('ID Eleveur'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-primary" name="create[submit]"><?php echo Lang::get('Creer'); ?></button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- eo list tab -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

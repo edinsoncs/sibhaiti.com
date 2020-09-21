@@ -1,0 +1,68 @@
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.headerTop', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php echo $__env->make('templates.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('eleveurs.tab_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="tab-pane <?php echo $active_tab == 'eleveurs_index' ? 'active' : NULL; ?>" id="tab_eleveurs_index">
+    <?php
+    if (isset($list))
+    {
+        ?>
+        <form action="" method="post" name="eleveurs_list" id="eleveurs_list">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        
+						<th><?php echo Lang::get('siyati ak Non '); ?></th>
+						<th><?php echo Lang::get('#fich'); ?></th>
+                        <!--<th><?php echo Lang::get('#Elvè'); ?></th>-->
+                        <th><?php echo Lang::get('CIN'); ?></th>
+                        <th><?php echo Lang::get('Depatman'); ?></th>
+                        <!--<th><?php echo Lang::get('komin'); ?></th> -->
+                        <th><?php echo Lang::get('seksyon'); ?></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <?php
+                if (!empty($list))
+                {
+                    foreach ($list as $key => $row)
+                    {
+                        ?>
+                        <tr>
+							
+                            <td><?php echo $row->lName . ", " . $row->fName." (".$row->getAnimals().")"; ?></td>
+							<td><?php echo $row->fiche; ?></td>
+                            <!--<td><?php echo $row->idEleveur; ?></td>-->
+                            <td><?php echo $row->cin; ?></td>
+                            
+                            <td><?php echo User::getDepartment($row->department); ?></td>
+                            <!--<td><?php echo User::getCity($row->department, $row->city); ?></td> -->
+                            <td><?php echo User::getSection($row->department, $row->city, $row->cSection); ?></td>
+                            <td>
+                                <a class="btn btn-success" type="button" value="Create" href="<?php echo URL::route('createanimal', $row->id); ?>"><span class="glyphicon glyphicon-plus"></span></a>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-info" type="button" value="Edit" href="<?php echo URL::route('editeleveur', $row->id); ?>"><span class="glyphicon glyphicon-edit"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
+            </table>
+            <?php echo $list->links(); ?>
+        </form>
+        <?php
+    }
+    ?>
+</div>
+<!-- eo list tab -->
+<?php echo $__env->make('templates.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

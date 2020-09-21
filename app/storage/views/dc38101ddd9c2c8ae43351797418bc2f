@@ -1,0 +1,45 @@
+<div class="container">
+    <?php
+    if ($page_id == 'animals_index') {
+        ?>
+        <div class="pull-right">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input name="search" type="text" class="form-control" placeholder="Recherche" value="<?php echo (isset($search)) ? $search : NULL ?>">
+                </div>
+                <button type="submit" class="btn btn-info">Recherche</button>
+            </form>
+        </div>
+        <?php
+    }
+    ?>
+    <div class="page-header">
+        <h2><?php echo 'Animals'; ?></h2>
+    </div>
+    <?php //Application::show_messages($messages); ?>
+
+    <ul class="nav nav-tabs" id="admin-animals-tab">
+        <li class="<?php echo $page_id == 'animals_index' ? 'active' : NULL; ?>" >
+            <a href="<?php echo URL::route('adminanimals'); ?>">
+                <?php echo 'List'; ?>
+            </a>
+        </li>
+        <li class="<?php echo $page_id == 'animals_create' ? 'active' : NULL; ?>">
+            <a href="<?php echo URL::route('admincreateanimal'); ?>" >
+                <?php echo 'Create'; ?>
+            </a>
+        </li>
+        <?php
+        if (isset($edit_item)) {
+            ?>
+            <li class="<?php echo $page_id == 'animals_edit' ? 'active' : NULL; ?>" >
+                <a href="#tab_animals_edit" data-toggle="tab">
+                    <?php echo 'Edit'; ?>
+                </a>
+            </li>
+            <?php
+        }
+        ?>
+    </ul>
+
+    <div class="tab-content">

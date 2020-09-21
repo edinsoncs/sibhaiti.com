@@ -1,0 +1,259 @@
+
+	body
+	{
+	width:80%;
+	height:auto;
+	margin:0 auto;
+	padding:auto;	
+	}
+	
+	.mt-10
+	{
+		margin-top: 10px;
+	}
+
+	
+	h1,h2,h5{text-transform:uppercase; margin:0; padding:0; border:0;}
+	
+	h3{color: #333;
+	text-shadow: 0px 2px 3px #555;
+	text-transform:uppercase; margin:0; padding:0; border:0;}
+	
+	#search_admin
+	{
+		
+		border:1px solid #ccc;
+		background:#D7DFEA;
+		width:90%;
+		height:auto;
+		margin:1em auto;
+		padding: .5em ;
+		overflow:hidden;
+		border-radius:5px;
+	}
+	
+	#search_admin textfield, select, button{
+		margin:.5em 0 .5em 0;
+	}
+	
+	
+	#row
+	{
+		width:90%;
+		height:auto;
+		margin:1em auto;
+		background:#D7DFEA;
+		border:1px solid blue;
+		border-radius:5px;
+	}
+	#row li a {
+		
+		font-size:1em;
+		font-weight:bold;
+		color:#09c;}
+	#row li{
+		
+		font-size:1em;
+		color:#555;
+		font-style:italic;
+		list-style:circle;}
+	#row .dlist {
+		list-style: square;
+		text-transform:lowercase;
+	}
+#page
+	{
+	width:100%;
+	height:auto;
+	margin:auto;
+}
+
+
+
+.text-danger
+			{
+				font-size:2em;
+				font-weight:bold;
+			}
+
+h4{
+	background: url('https://sib.agriculture.gouv.ht/frontapp/img/warning.png') no-repeat;
+	color:#f00;
+	height:40px;
+	font-style:italic;
+	padding: .5em 0 0 2em;
+	font-weight:bold;
+	text-transform:uppercase;
+}
+.help-inline{color:#999;}
+.page-header{border:0;}
+
+#header{
+	width:100%;
+	height:300px;
+	margin:1.5em 0 2em 0;
+	padding:0;
+	background:#ccc url('https://sib.agriculture.gouv.ht/frontapp/img/bgHeader.jpg') no-repeat;
+	
+	border-radius:1em;
+	box-shadow: 2px 1px 1px 1px #a7a7a7;
+}
+
+.col-lg-4{
+	
+	width:auto;
+	
+}
+
+.col-lg-12{
+	width:auto;
+	
+	
+}
+
+#top{
+	width:100%;
+	height:76px;
+	border-bottom:5px solid #025;
+	margin:0;
+	border-left:2px solid #025;
+	border-right:2px solid #025;
+	border-radius:0 0 1em 1em;
+	background:#f9f9f9 url('https://sib.agriculture.gouv.ht/frontapp/img/bgHeaderTop.jpg') no-repeat;
+	overflow;hidden;
+	
+	
+	}
+	
+	#top img{width:25%;
+		float:left;
+		margin:.2em;}
+		
+.connect{
+	width:auto;
+	margin:.5em;
+	padding:.5em auto;
+	float:right;
+	background-color:#e0eded;
+	border-radius:.5em;
+	
+}
+
+
+#intro img{
+    
+    margin:1em auto; 
+	width:310px;
+	height:80px;}
+
+#footer{
+	width:100%;
+	margin:4em auto;
+	color:#999;
+	background:url('https://sib.agriculture.gouv.ht/frontapp/img/bgFooter.gif') no-repeat;
+	font-size:12px;
+	text-align:center;
+	overflow:hidden;
+	padding:1em;
+	border-top:1px solid #f0f0f0;
+	
+}
+
+
+
+.remak{
+	border-radius:.5em;
+	width:99%;
+	height:auto;
+	background-color:#fac0c0;
+	margin:0 0 1em 0;
+	float:left;
+	border:0;
+}
+
+.remak2{
+	border:1px dotted red;
+	width:auto;
+	height:auto;
+	padding:1em;
+	margin:1em;
+	border-radius:10px;
+}
+
+.information{
+	
+	/*background: url('img/info.png') no-repeat;*/
+	color:#333;
+	height:auto;
+	font-style:italic;
+	padding:2em 0 0 0;
+	
+	
+	
+	
+}
+/*.remak2 input, select{margin:1em 0 1em 0;}*/
+	
+root { 
+    display: block;
+}
+.req{color:red;
+	font-size:1em;}
+.ml-10
+{
+    margin-left: 10px;
+}
+
+.user-form
+{
+    margin:10px 0 10px 0; border:1px solid #ccc; border-radius:.4em; background-color:#d8eeee;
+}
+
+.col-lg-offset-2
+{
+    margin:2em; padding:.5em; border:1px solid #ccc; border-radius:.5em; background-color:#f0f0f0; width:auto;
+}
+
+.col-lg-12{margin:.5em 0 .5em 0;}
+
+.btn{margin:0 .5em; }
+
+legend{
+	text-transform:uppercase;
+	font-style:italic;
+	color:#09c;
+	margin:0 0 .5em 0;
+	
+	background:#f0f0f0;
+	border-radius:.2em;
+	padding:.2em;
+	
+	font-weight:bold;
+	border-bottom:1px solid #ccc;
+	border-top:1px solid #ccc;
+}
+
+label{text-transform:uppercase;
+	color:#666;}
+	th{background:#f0f0f0;
+	text-transform:uppercase;
+	color:#025;
+}
+td{
+	text-transform:uppercase;
+	color:#555;
+	font-size:.85em;
+	font-weight:bold;}
+	
+	li, li a {
+	text-transform:uppercase;
+	color:#333;
+	font-size:.9em;
+	font-weight:bold;}
+	.titre_top{text-transform:uppercase;
+	color:#666;
+	font-size:1.3em;
+	font-weight:bold;
+	margin:1em 0 2em 1em;
+	font-style:italic;}
+	

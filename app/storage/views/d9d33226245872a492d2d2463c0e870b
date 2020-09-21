@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ht">
+    <head>
+        <title>Sib Haiti - <?php echo $title; ?></title>
+        <meta name="description" content="sistem idantifikasyon betay ayisyen">
+		<meta name="description" content="sib">
+		<meta name="author" content="cn.cherubin@gmail.com">
+		<meta name="robots" content="noindex">
+		<meta name="googlebot" content="noindex">
+        <meta name="viewport" content="width=600, initial-scale=1">
+
+        <?php echo HTML::style('/frontapp/bootstrap/css/bootstrap.min.css'); ?>
+        <?php echo HTML::style('/frontapp/css/vars.css'); ?>
+        <?php echo HTML::style('/frontapp/style.css'); ?>
+       
+        <?php echo HTML::script('/frontapp/bootstrap/js/jquery.js'); ?>
+        <?php echo HTML::script('/frontapp/bootstrap/js/bootstrap.min.js'); ?>
+       
+        <?php echo HTML::script('/frontapp/js/jquery.maskedinput.js'); ?>
+        
+        <?php echo HTML::script('/frontapp/js/frontScript.js'); ?>
+     
+    </head>
+    <body>
+        <?php echo $__env->yieldContent('content'); ?>       
+    </body>
+</html>

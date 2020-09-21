@@ -1,0 +1,45 @@
+
+<?php $__env->startSection('content'); ?>
+<div class="container">
+    <div class="col-lg-4">
+    </div>
+    <div class="col-lg-4 well">
+        <form action="<?php echo URL::route('login'); ?>" method="post" name="users_login" id="users_login" class="form-horizontal">
+            <legend>UNIPAJ</legend>
+            <?php
+            if (isset($errors)) {
+                foreach ($errors as $error) {
+                    ?>
+                    <div class="text-danger"><?php echo array_get($error, 0); ?></div>
+                    <?php
+                }
+            }
+            ?>
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <input name="username" id="username" type="text" placeholder="Email" class="form-control input-medium" />
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <input name="password" id="password" type="password" placeholder="Password" class="form-control input-medium" />
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <button type="submit" class="btn btn-primary">Sign in</button>  
+                    <a href="<?php echo URL::route('register'); ?>"><button type="button" class="btn btn-info pull-right">Register</button></a>                                                       
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-4">
+    </div>
+</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

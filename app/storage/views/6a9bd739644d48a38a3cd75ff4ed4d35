@@ -1,0 +1,44 @@
+<div class="container">
+    <?php
+    if ($page_id == 'animals_index') {
+        ?>
+        <div class="pull-right">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input name="search" type="text" class="form-control" placeholder="#tag,#so,#kanè" value="<?php echo (isset($search)) ? $search : NULL ?>">
+                </div>
+                <button type="submit" class="btn btn-info">Jwenn</button>
+            </form>
+        </div>
+        <?php
+    }
+    ?>
+    <p class="titre_top"><?php echo 'sib / pati bèf  yo'; ?></p>
+        
+    <?php //Application::show_messages($messages); ?>
+
+    <ul class="nav nav-tabs" id="admin-animals-tab">
+        <li class="<?php echo $page_id == 'animals_index' ? 'active' : NULL; ?>" >
+            <a href="<?php echo URL::route('animals'); ?>">
+                <?php echo 'Lis bèf yo'; ?>
+            </a>
+        </li>
+        <!--<li class="<?php echo $page_id == 'animals_create' ? 'active' : NULL; ?>">
+            <a href="<?php echo URL::route('createanimal'); ?>" >
+                <?php echo 'Anrejistre yon bèf'; ?>
+            </a>
+        </li>-->
+        <?php
+        if (isset($edit_item)) {
+            ?>
+            <li class="<?php echo $page_id == 'animals_edit' ? 'active' : NULL; ?>" >
+                <a href="#tab_animals_edit" data-toggle="tab">
+                    <?php echo 'Modifye yon bèf'; ?>
+                </a>
+            </li>
+            <?php
+        }
+        ?>
+    </ul>
+
+    <div class="tab-content">

@@ -1,0 +1,70 @@
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.headerTop', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('admin.templates.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('admin.abattoirs.tab_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<div class="tab-pane <?php echo $active_tab == 'abattoirs_index' ? 'active' : NULL; ?>" id="tab_abattoirs_index">
+    <?php
+    if (isset($list))
+    {
+        ?>
+        <form action="" method="post" name="abattoirs_list" id="abattoirs_list">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>NOM</th>
+                        <th>TIP</th>
+
+                        <th>BÈF ak Remak</th>
+                        <th>KABRIT</th>
+                        <th>MOUTON</th>
+                        <th>KOCHON</th>
+                        <th>BÈF</th>
+                        <th>DEPATMAN</th>
+                        <th>KOMIN</th>
+                        <th>SEKSYON</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <?php
+                if (!empty($list))
+                {
+                    foreach ($list as $row)
+                    {
+                        ?>
+                        <tr>
+                            <!-- <td><input type="checkbox" name="list[items][selected][]" value="<?php echo (string) $row->id; ?>" class="list_checkbox" /></td> -->
+                            <td><?php echo $row->name; ?></td>
+                            <td><?php echo $row->type; ?></td>
+                             <!--<td><?php echo $row->phone; ?></td>-->
+                              <td><?php echo $row->notifications(); ?></td>
+                            <td><?php echo $row->kabri; ?></td>
+                            <td><?php echo $row->mouton; ?></td>
+                            <td><?php echo $row->kochon; ?></td>
+                            <td><?php echo $row->bef; ?></td>
+                            <td><?php echo User::getDepartment($row->department()); ?></td>
+                            <td><?php echo User::getCity($row->department(), $row->city()); ?></td>
+                            <td><?php echo User::getSection($row->department(), $row->city(), $row->cSection()); ?></td>
+
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-info" type="button" value="Edit" href="<?php echo URL::route('admineditabattoir', $row->id); ?>"><span class="glyphicon glyphicon-edit"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
+            </table>
+            <?php echo $list->links(); ?>
+        </form>
+        <?php
+    }
+    ?>
+</div>
+<!-- eo list tab -->
+<?php echo $__env->make('templates.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

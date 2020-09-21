@@ -1,0 +1,49 @@
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.headerTop', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php echo $__env->make('admin.templates.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container">
+    <?php
+    /*
+      if ($page_id == 'admin_dashboard')
+      {
+      ?>
+      <div class="pull-right">
+      <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+      <input name="search" type="text" class="form-control" placeholder="Recherche" value="<?php echo (isset($search)) ? $search : NULL ?>">
+      </div>
+      <button type="submit" class="btn btn-info">Recherche</button>
+      </form>
+      </div>
+      <?php
+      } */
+    ?>
+    <div class="page-header">
+        <h2><?php echo 'Department: ' . array_get($deparment, 'name'); ?></h2>
+    </div>
+    <div class="row">
+        <?php
+        if (isset($deparment) && !empty($deparment))
+        {
+            $cities = array_get($deparment, 'cities');
+            foreach ($cities as $city)
+            {
+                ?>
+                <div class="col-lg-3 dept-box">
+                    <legend><?php echo array_get($city, 'name'); ?></legend>
+                    <div><a href="<?php echo URL::route('adminanimalscity', array_get($city, 'id')); ?>"><?php echo 'Animals' . " (" . User::cityCounter('animal', array_get($deparment, 'id'), array_get($city, 'id')) . ")"; ?></a></div>
+                    <div><a href="<?php echo URL::route('adminagentscity', array_get($city, 'id')); ?>"><?php echo 'Agents' . " (" . User::cityCounter('agent', array_get($deparment, 'id'), array_get($city, 'id')) . ")"; ?></a></div>
+                    <div><a href="<?php echo URL::route('admineleveurscity', array_get($city, 'id')); ?>"><?php echo 'Eleveurs' . " (" . User::cityCounter('eleveur', array_get($deparment, 'id'), array_get($city, 'id')) . ")"; ?></a></div>
+                </div>
+                <?php
+            }
+        }
+        ?>
+    </div>
+</div>
+<?php echo $__env->make('templates.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

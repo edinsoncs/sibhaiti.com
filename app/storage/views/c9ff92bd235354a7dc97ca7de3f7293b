@@ -1,0 +1,8 @@
+<?php echo $__env->make('templates.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->startSection('content'); ?>
+<div class="">
+    
+</div>
+<!-- eo list tab -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

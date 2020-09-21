@@ -1,0 +1,110 @@
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('admin.templates.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('admin.animals.tab_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="tab-pane <?php echo $active_tab == 'animals_create' ? 'active' : NULL; ?>" id="tab_animals_create">
+    <form action="" method="post" name="animals_create" class="form-horizontal">
+        <div class="admin-form">
+            <?php
+            if (isset($errors)) {
+                foreach ($errors as $error) {
+                    ?>
+                    <div class="text-danger"><?php echo array_get($error, 0); ?></div>
+                    <?php
+                }
+            }
+            ?>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_animal_tag"><?php echo Lang::get('Tag'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[animal][tag]" id="create_animal_tag" class="form-control" type="text" placeholder="<?php echo Lang::get('Tag'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_animal_carnet"><?php echo Lang::get('Carnet'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[animal][carnet]" id="create_animal_carnet" class="form-control" type="text" placeholder="<?php echo Lang::get('Carnet'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_animal_type"><?php echo Lang::get('Type'); ?></label>
+                <div class="col-lg-4">
+                    <select name="create[animal][type]" id="create_animal_type" class="form-control" >
+                        <option value="vache"><?php echo Lang::get('Vache'); ?></option>
+                        <option value="boeuf"><?php echo Lang::get('Boeuf'); ?></option>
+                        <option value="taureau"><?php echo Lang::get('Taureau'); ?></option>
+                        <option value="veau"><?php echo Lang::get('Veau'); ?></option>
+                    </select>
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_animal_birthday"><?php echo Lang::get('Date de naissance'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[animal][birthday]" id="create_animal_birthday" class="form-control" type="text" placeholder="<?php echo Lang::get('Date de naissance'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_animal_isVaccinated"><?php echo Lang::get('Is Vaccined'); ?></label>
+                <div class="col-lg-4">
+                    <select name="create[animal][isVaccinated]" id="create_animal_isVaccinated" class="form-control">
+                        <option value="">--</option>
+                        <option value="oui"><?php echo Lang::get('Oui'); ?></option>
+                        <option value="non"><?php echo Lang::get('Non'); ?></option>                        
+                    </select>
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_animal_mTag"><?php echo Lang::get('Tag mere'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[animal][mTag]" id="create_animal_mTag" class="form-control" type="text" placeholder="<?php echo Lang::get('Tag mere'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_animal_fTag"><?php echo Lang::get('Tag pere'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[animal][fTag]" id="create_animal_fTag" class="form-control" type="text" placeholder="<?php echo Lang::get('Tag pere'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_animal_eleveur"><?php echo Lang::get('Eleveur'); ?></label>
+                <div class="col-lg-4">
+                    <select name="create[animal][eleveur]" id="create_animal_eleveur" class="form-control" >
+                        <option value="">--</option>
+                        <?php
+                        if (isset($eleveurs)) {
+                            foreach ($eleveurs as $eleveur) {
+                                ?>
+                                <option value="<?php echo $eleveur->id; ?>"><?php echo $eleveur->getFullNameAttribute(); ?></option>
+                                <?php
+                            }
+                        }
+                        ?>                   
+                    </select>
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_animal_dDate"><?php echo Lang::get('Date de décès'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[animal][dDate]" id="create_animal_dDate" class="form-control" type="text" placeholder="<?php echo Lang::get('Date de décès'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button type="submit" class="btn btn-primary" name="create[submit]"><?php echo Lang::get('Creer'); ?></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- eo list tab -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

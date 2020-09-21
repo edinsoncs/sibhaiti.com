@@ -1,0 +1,106 @@
+<?php echo $__env->make('templates.headerTop', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php echo $__env->make('templates.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->startSection('content'); ?>
+<div class="container">
+    <?php
+    if ( isset($animals_user) )
+    {
+        ?>
+        <!--<legend>Animaux <?php echo " (", count($animals_user), ")"; ?> </legend>-->
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th><?php echo Lang::get('#Tag'); ?></th>
+                    <th><?php echo Lang::get('#Kanè'); ?></th>
+                    <th><?php echo Lang::get('Bèf'); ?></th>
+                    <th><?php echo Lang::get('Elvè'); ?></th>
+                    <th><?php echo Lang::get('#So Ajan bèf saa'); ?></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                if ( !empty($animals_user) )
+                {
+                    foreach ( $animals_user as $key => $row )
+                    {
+                        ?>
+                        <tr>
+                            <td><?php echo ++$key; ?></td>
+                            <td><a href="<?php echo URL::route('editanimal', $row->id); ?>"><?php echo $row->tag; ?></a></td>
+                            <td><?php echo ucfirst($row->carnet); ?></td>
+                            <td><?php echo ucfirst($row->type); ?></td>
+                            <td><?php echo $row->getEleveur(); ?></td>
+                            <td><?php echo $row->noSoAgent(); ?></td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-info" type="button" value="Edit" href="<?php echo URL::route('editanimal', $row->id); ?>"><span class="glyphicon glyphicon-edit"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
+        <?php echo $animals_user->links(); ?>
+        <?php
+    }
+    ?>
+
+    <!--<?php
+    if ( isset($eleveurs_user) )
+    {
+        ?>
+        <legend>Éleveurs <?php echo " (", count($eleveurs_user), ")"; ?> </legend>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th><?php echo Lang::get('Prenom et nom'); ?></th>
+                        <th><?php echo Lang::get('ID Éleveur'); ?></th>
+                        <th><?php echo Lang::get('NIF'); ?></th>
+                        <th><?php echo Lang::get('CIN'); ?></th>
+                        <th><?php echo Lang::get('Département'); ?></th>
+                        <th><?php echo Lang::get('Section communale'); ?></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <?php
+                if ( !empty($eleveurs_user) )
+                {
+                    foreach ( $eleveurs_user as $key => $row )
+                    {
+                        ?>
+                        <tr>
+                            <td><?php echo ++$key; ?></td>
+                            <td><a href="<?php echo URL::route('editeleveur', $row->id); ?>"><?php echo $row->fName . " " . $row->lName; ?></a></td>
+                            <td><?php echo $row->idEleveur; ?></td>
+                            <td><?php echo $row->nif; ?></td>
+                            <td><?php echo $row->cin; ?></td>
+                            <td><?php echo $row->department; ?></td>
+                            <td><?php echo $row->cSection; ?></td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-info" type="button" value="Edit" href="<?php echo URL::route('editeleveur', $row->id); ?>"><span class="glyphicon glyphicon-edit"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
+            </table>
+            <?php echo $eleveurs_user->links(); ?>
+        <?php
+    }
+    ?>
+</div>
+<!-- eo list tab -->
+	<?php echo $__env->make('templates.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

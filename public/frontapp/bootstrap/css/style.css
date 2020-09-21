@@ -1,0 +1,35 @@
+.category-list-item
+{
+	position: relative;
+}
+
+.category-list-title
+{
+	position: absolute;
+	background-color: rgba(0,0,0,0.5);
+	color: #ffffff;
+	bottom: 20px;
+	height: 30px;
+	width: 100%;
+}
+
+.category-name
+{
+	/* width: 40%; */
+}
+
+.category-list-title-inner
+{
+	margin: 5px;
+}
+
+.white-space
+{
+	margin: 10px;
+}
+
+.small-img
+{
+	max-height: 70px;
+	max-width: 70px;
+}

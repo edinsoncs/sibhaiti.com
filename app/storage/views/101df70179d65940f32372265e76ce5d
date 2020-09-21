@@ -1,0 +1,132 @@
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('agents.tab_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="tab-pane <?php echo $active_tab == 'agents_edit' ? 'active' : NULL; ?>" id="tab_agents_edit">
+    <form action="" method="post" name="agents_edit" class="form-horizontal">
+        <div class="user-form">
+            <?php
+            if (isset($errors)) {
+                foreach ($errors as $error) {
+                    ?>
+                    <div class="text-danger"><?php echo array_get($error, 0); ?></div>
+                    <?php
+                }
+            }
+            ?>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_agent_fName"><?php echo Lang::get('Prenom'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[agent][fName]" id="edit_agent_fName" class="form-control" type="text" placeholder="<?php echo Lang::get('Prenom'); ?>" value="<?php echo array_get($edit_item, 'fName'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_agent_lName"><?php echo Lang::get('Nom'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[agent][lName]" id="edit_agent_lName" class="form-control" type="text" placeholder="<?php echo Lang::get('Nom'); ?>" value="<?php echo array_get($edit_item, 'lName'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_agent_rank"><?php echo Lang::get('Rank'); ?></label>
+                <div class="col-lg-6">
+                    <div class="col-lg-4">
+                        <input name="edit[agent][lRank]" id="edit_agent_lRank" class="form-control" type="text" placeholder="<?php echo Lang::get('Min rank'); ?>" value="<?php echo array_get($edit_item, 'lRank'); ?>">
+                    </div>
+                    <div class="col-lg-4">
+                        <input name="edit[agent][hRank]" id="edit_agent_hRank" class="form-control" type="text" placeholder="<?php echo Lang::get('Max rank'); ?>" value="<?php echo array_get($edit_item, 'hRank'); ?>">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_agent_phone"><?php echo Lang::get('Téléphone'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[agent][phone]" id="edit_agent_phone" class="form-control" type="text" placeholder="<?php echo Lang::get('Téléphone'); ?>" value="<?php echo array_get($edit_item, 'phone'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_agent_email"><?php echo Lang::get('Email'), "*"; ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[agent][email]" id="edit_agent_email" class="form-control" type="text" placeholder="<?php echo Lang::get('Email'); ?>" value="<?php echo array_get($edit_item, 'email'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_agent_sex"><?php echo Lang::get('Sexe'); ?></label>
+                <div class="col-lg-4">
+                    <select name="edit[agent][sex]" id="edit_agent_sex" class="form-control" >
+                        <option value="male" <?php echo (array_get($edit_item, 'sex') == 'male') ? 'selected="selected"' : NULL; ?>><?php echo Lang::get('Male'); ?></option>
+                        <option value="female" <?php echo (array_get($edit_item, 'sex') == 'female') ? 'selected="selected"' : NULL; ?>><?php echo Lang::get('Female'); ?></option>                        
+                    </select>
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_agent_nif"><?php echo Lang::get('NIF'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[agent][nif]" id="edit_agent_nif" class="form-control" type="text" placeholder="<?php echo Lang::get('NIF'); ?>" value="<?php echo array_get($edit_item, 'nif'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_agent_cin"><?php echo Lang::get('CIN'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[agent][cin]" id="edit_agent_cin" class="form-control" type="text" placeholder="<?php echo Lang::get('CIN'); ?>" value="<?php echo array_get($edit_item, 'cin'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_agent_birthday"><?php echo Lang::get('Date de naissance'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[agent][birthday]" id="edit_agent_birthday" class="form-control" type="text" placeholder="<?php echo Lang::get('Date de naissance'); ?>" value="<?php echo array_get($edit_item, 'birthday'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_agent_department"><?php echo Lang::get('Department'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[agent][department]" id="edit_agent_department" class="form-control" type="text" placeholder="<?php echo Lang::get('Department'); ?>" value="<?php echo array_get($edit_item, 'department'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_agent_city"><?php echo Lang::get('Ville'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[agent][city]" id="edit_agent_city" class="form-control" type="text" placeholder="<?php echo Lang::get('Ville'); ?>" value="<?php echo array_get($edit_item, 'city'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_agent_cSection"><?php echo Lang::get('Section communale'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[agent][cSection]" id="edit_agent_cSection" class="form-control" type="text" placeholder="<?php echo Lang::get('Section communale'); ?>" value="<?php echo array_get($edit_item, 'cSection'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_agent_so"><?php echo Lang::get('Numéro so'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[agent][so]" id="edit_agent_so" class="form-control" type="text" placeholder="<?php echo Lang::get('Numéro so'); ?>" value="<?php echo array_get($edit_item, 'so'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_agent_idResepag"><?php echo Lang::get('IdResepag'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[agent][idResepag]" id="edit_agent_idResepag" class="form-control" type="text" placeholder="<?php echo Lang::get('IdResepag'); ?>" value="<?php echo array_get($edit_item, 'idResepag'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button type="submit" class="btn btn-primary" name="edit[submit]"><?php echo Lang::get('Editer'); ?></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- eo list tab -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

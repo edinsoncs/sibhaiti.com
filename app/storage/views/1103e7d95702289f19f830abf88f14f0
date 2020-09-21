@@ -1,0 +1,45 @@
+<div class="container">
+    <?php
+    if ($page_id == 'admin_users_index') {
+        ?>
+        <div class="pull-right">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input name="search" type="text" class="form-control" placeholder="Non ak Siyati" value="<?php echo (isset($search)) ? $search : NULL ?>">
+                </div>
+                <button type="submit" class="btn btn-info">Jwenn</button>
+            </form>
+        </div>
+        <?php
+    }
+    ?>
+    <div class="page-header">
+        <h2><?php echo ''; ?></h2>
+    </div>
+    <?php //Application::show_messages($messages); ?>
+
+    <ul class="nav nav-tabs" id="admin-users-tab">
+        <li class="<?php echo $page_id == 'admin_users_index' ? 'active' : NULL; ?>" >
+            <a href="<?php echo URL::route('adminusers'); ?>">
+                <?php echo 'Lis Itilizatè Yo'; ?>
+            </a>
+        </li>
+        <li class="<?php echo $page_id == 'admin_users_create' ? 'active' : NULL; ?>">
+            <a href="<?php echo URL::route('admincreateuser'); ?>" >
+                <?php echo 'Kreye yon Itilizatè'; ?>
+            </a>
+        </li>
+        <?php
+        if (isset($edit_item)) {
+            ?>
+            <li class="<?php echo $page_id == 'admin_users_edit' ? 'active' : NULL; ?>" >
+                <a href="#tab_adminedituser" data-toggle="tab">
+                    <?php echo 'Edit'; ?>
+                </a>
+            </li>
+            <?php
+        }
+        ?>
+    </ul>
+
+    <div class="tab-content">

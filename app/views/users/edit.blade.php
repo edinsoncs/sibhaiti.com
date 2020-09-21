@@ -1,0 +1,78 @@
+@extends('layouts.common')
+
+@section('content')
+@include('templates.header')
+<div class="container">
+    <form action="" method="post" name="users_edit" class="form-horizontal">
+        <div class="user-form">
+            <legend><?php echo Lang::get('Pwofil'); ?></legend>
+            <?php
+            if (isset($errors)) {
+                foreach ($errors as $error) {
+                    ?>
+                    <div class="text-danger"><?php echo array_get($error, 0); ?></div>
+                    <?php
+                }
+            }
+            ?>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_user_fName"><?php echo Lang::get('Nom'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[user][fName]" id="edit_user_fName" class="form-control" type="text" placeholder="<?php echo Lang::get('Prenom'); ?>" value="<?php echo array_get($edit_item, 'fName'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_user_lName"><?php echo Lang::get('Siyati'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[user][lName]" id="edit_user_lName" class="form-control" type="text" placeholder="<?php echo Lang::get('Siyati'); ?>" value="<?php echo array_get($edit_item, 'lName'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_user_phone"><?php echo Lang::get('Telefon'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[user][phone]" id="edit_user_phone" class="form-control" type="text" placeholder="<?php echo Lang::get('Telefon'); ?>" value="<?php echo array_get($edit_item, 'phone'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_user_email"><?php echo Lang::get('Imel'), "*"; ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[user][email]"  readonly id="edit_user_email" class="form-control" type="text" placeholder="<?php echo Lang::get('Imel'); ?>" value="<?php echo array_get($edit_item, 'email'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+			<div class="form-group">
+                <div class="col-lg-offset-2 col-lg-4">
+                    <table class="table-bordered">
+					<tr>
+                    <th>BÈF</th>
+					<th>ELVÈ</th>
+					<th>AJAN</th>
+                    <th>ABATAJ</th>
+					
+					</tr>
+					<tr>
+					<td><?php echo $user->animals();?></td>
+					<td><?php echo $user->eleveurs();?></td>
+					<td><?php echo $user->agents();?></td>
+                    <td><?php echo $user->notifications('a'); ?></td>
+					</tr>
+					</table>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button type="submit" class="btn btn-primary" name="edit[submit]"><?php echo Lang::get('Modifye'); ?></button>
+                </div>
+            </div>	
+        </div>
+    </form>
+</div>
+<!-- eo list tab -->
+@include('templates.footer')
+
+@endsection

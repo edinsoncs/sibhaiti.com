@@ -1,0 +1,317 @@
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.headerTop', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<?php echo $__env->make('templates.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('animals.tab_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="tab-pane <?php echo $active_tab == 'animals_index' ? 'active' : NULL; ?>" id="tab_animals_index">
+    <?php
+    if (isset($list))
+    {
+        ?>
+        <form action="" method="post" name="animals_list" id="animals_list">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><?php echo Lang::get('Elvè'); ?></th>
+						
+                        <th><?php echo Lang::get('#Kanè'); ?></th>
+						<th><?php echo Lang::get('#Tag'); ?></th>
+                        <!--<th><?php echo Lang::get('Bèf'); ?></th>-->
+                        <th><?php echo Lang::get('#So Ajan'); ?></th>
+                        <!--<th><?php echo Lang::get('Depatman'); ?></th>-->
+                        <th><?php echo Lang::get('komin'); ?></th>
+                        <th><?php echo Lang::get('seksyon'); ?></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <?php
+                if (!empty($list))
+                {
+                    foreach ($list as $key => $row)
+                    {
+                        ?>
+                        <tr>
+                            <td><?php echo $row->getEleveur(); ?></td>
+                            <td><?php echo ucfirst($row->carnet); ?></td>
+							<td><?php echo $row->tag; ?></td>
+                            <!--<td><?php echo ucfirst($row->type); ?></td>-->
+                            
+                            <!--<td><?php echo $row->noSoAgent(); ?></td> -->
+							<td><?php echo $row->so; ?></td>
+                            <!--<td><?php echo User::getDepartment($row->department); ?></td>-->
+                            <td><?php echo User::getCity($row->department, $row->city); ?></td>
+                            <td><?php echo User::getSection($row->department, $row->city, $row->cSection); ?></td>
+                            <td>
+                                <button class="btn btn-danger btn-modal" data-toggle="modal" data-target="#notificationModal" data-id="<?php echo $row->id; ?>" data-tag="<?php echo $row->tag; ?>">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-info" type="button" value="Edit" href="<?php echo URL::route('editanimal', $row->id); ?>"><span class="glyphicon glyphicon-edit"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
+            </table>
+            <?php echo $list->links(); ?>
+        </form>
+        <?php
+    }
+    ?>
+</div>
+<!-- eo list tab -->
+<!-- Modal -->
+<div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="notificationLabel">METE YON REMAK SOU BEF SA A</h4>
+            </div>
+            <div class="modal-body">
+                <div class="">
+                    <div class="form-group">
+                       
+                        
+                    <input  name="notification[tag]" id="notification-tag" maxlength="50" type="hidden" class="form-control"/>
+                            
+                       
+                    </div>
+                    <div class="form-group">
+                        <input name="notification[rId]" id="notification-rid" class="form-control" type="hidden">
+                        <div class="col-lg-12">
+                            <select  class="form-control" name="notification[type]" id="notification-type">
+                                <option value=""><?php echo 'Tip Remak laa...'; ?></option>
+                                <option value="c"><?php echo 'Vaksinasyon Chabon'; ?></option>					
+                                <option value="a"><?php echo 'Abataj nan labatwa'; ?></option>
+                                <option value="m"><?php echo 'Lanmo Maladi oswa Aksidan'; ?></option>
+                                <option value="t"><?php echo 'Chanjman Mèt'; ?></option>
+                                <option value="k"><?php echo 'Ranplasman Kanè Pèdi'; ?></option>
+								<option value="v"><?php echo 'Vòl'; ?></option>
+								<option value="e"><?php echo 'Elvè san cin'; ?></option>
+
+
+                                <option value="e"><?php echo 'Elatriye'; ?></option>
+                            </select>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <textarea name="notification[desc]" id="notification-desc" maxlength="100" type="text" class="form-control" placeholder="<?php echo 'Esplikasyon [100]'; ?>"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <input name="notification[date]" id="notification-date" class="form-control" type="text"  placeholder="<?php echo Lang::get('01/01/1804'); ?>" maxlength="10">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <select name="notification[department]" id="notification-department-1" class="form-control">
+                                <option value="">Chwazi depatman...</option>
+                                <?php
+                                foreach ($departments as $dept)
+                                {
+                                    ?>
+                                    <option value="<?php echo array_get($dept, 'id'); ?>"><?php echo array_get($dept, 'name'); ?></option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <select name="notification[city]" id="notification-city" class="form-control" >  
+                                <option value="">Chwazi komin...</option>
+                            </select>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <select name="notification[cSection]" id="notification-cSection" class="form-control" >  
+                                <option value="">Seksyon...</option>
+                            </select>
+                            <span class="help-inline"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <input name="notification[abbatoire]" id="notification-abbatoire" class="form-control" type="text" placeholder="Non Abatwa a"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <input name="notification[so]" id="notification-so" class="form-control" type="text" placeholder="#SO [AA123456]" maxlength="8" />
+                        </div>
+                    </div>
+					<div class="form-group">
+                        <div class="col-lg-12">
+                            <input name="verification_tag" id="verification_tag" class="form-control" type="text" placeholder="#TAG" placeholder="_____-_____" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Anile</button>
+                <button type="button" id="create-notification" class="btn btn-primary">Anrejistre</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">   
+    var departments = <?php echo (!empty($departments)) ? json_encode($departments) : "{}"; ?>;
+    $(document).ready(function(){
+        $("#notification-date").mask("99/99/9999");
+		//$("#notification-so").mask("9999");
+		$("#verification_tag").mask("9999999999");
+        
+        $('.btn-modal').click(function(){
+            var rId = $(this).attr('data-id');
+            var tag = $(this).attr('data-tag');
+            $('#notification-rid').val(rId);
+            $('#notification-tag').val(tag);
+        });
+        
+        $('#create-notification').click(function(){
+            if($('#notification-desc').val()!="" 
+			&& $('#notification-type').val()!="" 
+			&& $('#notification-date').val()!="" 
+			&& $('#notification-so').val()!="" 
+			&& $('#verification_tag').val()!=""
+			&& $('#verification_tag').val() == $('#notification-tag').val()
+			
+			)
+			{
+                var type = $('#notification-type').val();
+                var text = $('#notification-desc').val();
+                var date = $('#notification-date').val();
+                var department = $('#notification-department-1').val();
+                var city = $('#notification-city').val();
+                var section = $('#notification-cSection').val();
+                var abbatoire = $('#notification-abbatoire').val();
+                var so = $('#notification-so').val();
+				
+                var rId = $('#notification-rid').val();
+                
+                var data = {text:text,type:type,date:date,rId:rId,department:department,city:city,section:section,abbatoire:abbatoire,so:so};
+                
+                $.ajax({
+                    'url' : '<?php echo URL::route('createnotification'); ?>',
+                    'type' : 'POST',
+                    'data' : data,
+                    'success' : function(data){
+                        $('#notificationModal').modal('hide');			
+                    }
+                });		                     
+            } 
+            else{
+                alert('Oups!!! Verifye #TAG la ak chan obligatwa yo.');
+            }
+        });
+        
+        $('#notification-department-1').change(function(){
+            var dept = $('#notification-department-1').val();         
+            var  cities = [];
+            
+            if(typeof dept != 'undefined'){
+                
+                for(var j =0 ; j<departments.length;j++ )
+                {
+                    if(departments[j].id == dept)
+                    {
+                        cities = departments[j].cities;
+                        break;
+                    }
+                }
+                if(cities.length != 0)
+                {
+                    //console.log(dept);
+                    // console.log(cities);
+                    // clear the select
+                    $("#notification-city").empty();
+                    var option = $('<option>aaaa</option>').attr({
+                        value : null
+                    })
+                    .text('Chwazi komin...');
+                        
+                    //add the option to the select
+                    $("#notification-city").append(option);
+                    for(var i = 0; i<cities.length; i++){
+                        var value = cities[i].id;
+                        var text = cities[i].name;
+                        // create an option with attributes 
+                        var option = $('<option></option>').attr({
+                            value : value
+                        })
+                        .text(text);
+                        
+                        //add the option to the select
+                        $("#notification-city").append(option);
+                    }
+                }
+            }
+        });
+        
+        $('#notification-city').change(function(){
+            var city_id = $('#notification-city').val();
+            var dept = $('#notification-department-1').val();
+            if(typeof city_id != 'undefined' && typeof dept != 'undefined')
+            {
+                var cities = [];
+                var sections = [];
+                for(var j =0 ; j<departments.length;j++ )
+                {
+                    if(departments[j].id == dept)
+                    {
+                        cities = departments[j].cities;
+                        break;
+                    }
+                }
+                if(cities.length != 0)
+                {
+                    for(var k =0 ; k<cities.length;k++ )
+                    {
+                        if(cities[k].id == city_id)
+                        {
+                            sections = cities[k].sections;
+                            break;
+                        }
+                    }
+                }
+                if (sections.length != 0)
+                {
+                    //console.log(dept);
+                    //console.log(cities);
+                    // clear the select
+                    $("#notification-cSection").empty();
+                    for(var i = 0; i<sections.length; i++)
+                    {
+                        var value = sections[i].id;
+                        var text = sections[i].name;
+                        // create an option with attributes 
+                        var option = $('<option></option>').attr({
+                            value : value
+                        })
+                        .text(text);
+                        
+                        //add the option to the select
+                        $("#notification-cSection").append(option);
+                    }
+                }
+            }
+        });
+    });
+</script>  
+<?php echo $__env->make('templates.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

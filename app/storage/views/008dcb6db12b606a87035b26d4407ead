@@ -1,0 +1,106 @@
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('admin.templates.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('admin.eleveurs.tab_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="tab-pane <?php echo $active_tab == 'eleveurs_edit' ? 'active' : NULL; ?>" id="tab_eleveurs_edit">
+    <form action="" method="post" name="eleveurs_edit" class="form-horizontal">
+        <div class="admin-form">
+            <?php
+            if (isset($errors)) {
+                foreach ($errors as $error) {
+                    ?>
+                    <div class="text-danger"><?php echo array_get($error, 0); ?></div>
+                    <?php
+                }
+            }
+            ?>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_eleveur_fName"><?php echo Lang::get('Prenom'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[eleveur][fName]" id="edit_eleveur_fName" class="form-control" type="text" placeholder="<?php echo Lang::get('Prenom'); ?>" value="<?php echo array_get($edit_item, 'fName'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_eleveur_lName"><?php echo Lang::get('Nom'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[eleveur][lName]" id="edit_eleveur_lName" class="form-control" type="text" placeholder="<?php echo Lang::get('Nom'); ?>" value="<?php echo array_get($edit_item, 'lName'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_eleveur_phone"><?php echo Lang::get('Téléphone'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[eleveur][phone]" id="edit_eleveur_phone" class="form-control" type="text" placeholder="<?php echo Lang::get('Téléphone'); ?>" value="<?php echo array_get($edit_item, 'phone'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_eleveur_email"><?php echo Lang::get('Email'), "*"; ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[eleveur][email]" id="edit_eleveur_email" class="form-control" type="text" placeholder="<?php echo Lang::get('Email'); ?>" value="<?php echo array_get($edit_item, 'email'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_eleveur_cin"><?php echo Lang::get('CIN'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[eleveur][cin]" id="edit_eleveur_cin" class="form-control" type="text" placeholder="<?php echo Lang::get('CIN'); ?>" value="<?php echo array_get($edit_item, 'cin'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_eleveur_department"><?php echo Lang::get('Department'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[eleveur][department]" id="edit_eleveur_department" class="form-control" type="text" placeholder="<?php echo Lang::get('Department'); ?>" value="<?php echo array_get($edit_item, 'department'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_eleveur_cSection"><?php echo Lang::get('Section communale'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[eleveur][cSection]" id="edit_eleveur_cSection" class="form-control" type="text" placeholder="<?php echo Lang::get('Section communale'); ?>" value="<?php echo array_get($edit_item, 'cSection'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_eleveur_so"><?php echo Lang::get('Numéro so'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[eleveur][so]" id="edit_eleveur_so" class="form-control" type="text" placeholder="<?php echo Lang::get('Numéro so'); ?>" value="<?php echo array_get($edit_item, 'so'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_eleveur_idResepag"><?php echo Lang::get('IdResepag'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[eleveur][idResepag]" id="edit_eleveur_idResepag" class="form-control" type="text" placeholder="<?php echo Lang::get('IdResepag'); ?>" value="<?php echo array_get($edit_item, 'idResepag'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+                     <div class="form-group">
+                <label class="col-lg-2 control-label" for="edit_eleveur_idEleveur"><?php echo Lang::get('ID Eleveur'); ?></label>
+                <div class="col-lg-4">
+                    <input name="edit[eleveur][idEleveur]" id="edit_eleveur_idEleveur" class="form-control" type="text" placeholder="<?php echo Lang::get('ID Eleveur'); ?>" value="<?php echo array_get($edit_item, 'idEleveur'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <?php /*
+              <div class="form-group">
+              <label class="col-lg-2 control-label" for="edit_eleveur_tTotal"><?php echo Lang::get('Quantité totale'); ?></label>
+              <div class="col-lg-4">
+              <input name="edit[eleveur][tTotal]" id="edit_eleveur_tTotal" class="form-control" type="text" placeholder="<?php echo Lang::get('Quantité totale'); ?>" value="<?php echo array_get($edit_item, 'tTotal'); ?>">
+              <span class="help-inline"></span>
+              </div>
+              </div>
+             */ ?>
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button type="submit" class="btn btn-primary" name="edit[submit]"><?php echo Lang::get('Editer'); ?></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- eo list tab -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

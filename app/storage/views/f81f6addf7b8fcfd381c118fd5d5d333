@@ -1,0 +1,45 @@
+<div class="container">
+    <?php
+    if ($page_id == 'agents_index') {
+        ?>
+        <div class="pull-right">
+            <form action="<?php echo URL::route('adminagents'); ?>" class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input name="search" type="text" class="form-control" placeholder="Jwenn" value="<?php echo (isset($search)) ? $search : NULL ?>">
+                </div>
+                <button type="submit" class="btn btn-info">Jwenn</button>
+            </form>
+        </div>
+        <?php
+    }
+    ?>
+    <div class="page-header">
+        <h2><?php echo 'AJAN IDANTIFIKATÈ AK ENSPEKTÈ VETERINÈ YO'; ?></h2>
+    </div>
+    <?php //Application::show_messages($messages); ?>
+
+    <ul class="nav nav-tabs" id="admin-agents-tab">
+        <li class="<?php echo $page_id == 'agents_index' ? 'active' : NULL; ?>" >
+            <a href="<?php echo URL::route('adminagents'); ?>">
+                <?php echo 'Lis ajan yo'; ?>
+            </a>
+        </li>
+        <!--<li class="<?php echo $page_id == 'agents_create' ? 'active' : NULL; ?>">
+            <a href="<?php echo URL::route('admincreateagent'); ?>" >
+                <?php echo 'Anrejistre yon ajan'; ?>
+            </a>
+        </li>-->
+        <?php
+        if (isset($edit_item)) {
+            ?>
+            <li class="<?php echo $page_id == 'agents_edit' ? 'active' : NULL; ?>" >
+                <a href="#tab_agents_edit" data-toggle="tab">
+                    <?php echo 'Modifye yon ajan'; ?>
+                </a>
+            </li>
+            <?php
+        }
+        ?>
+    </ul>
+
+    <div class="tab-content">

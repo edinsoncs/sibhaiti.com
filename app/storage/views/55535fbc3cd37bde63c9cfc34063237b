@@ -1,0 +1,79 @@
+
+<?php $__env->startSection('content'); ?>
+<div class="">
+    <form action="" method="post" name="admin_users_create" class="form-horizontal">
+        <div class="col-lg-3">
+        </div>
+        <div class="well col-lg-6">
+            <legend><?php echo Lang::get('Enregistrement de l\'utilisateur'); ?></legend>
+            <?php
+            if (isset($errors)) {
+                foreach ($errors as $error) {
+                    ?>
+                    <div class="text-danger"><?php echo array_get($error, 0); ?></div>
+                    <?php
+                }
+            }
+            ?>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_user_fName"><?php echo Lang::get('Prenom'), "*"; ?></label>
+                <div class="col-lg-6">
+                    <input name="create[user][fName]" id="create_user_fName" class="form-control" type="text" placeholder="<?php echo Lang::get('Prenom'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_user_lName"><?php echo Lang::get('Nom'), "*"; ?></label>
+                <div class="col-lg-6">
+                    <input name="create[user][lName]" id="create_user_lName" class="form-control" type="text" placeholder="<?php echo Lang::get('Nom'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_user_email"><?php echo Lang::get('Courriel'), "*"; ?></label>
+                <div class="col-lg-6">
+                    <input name="create[user][email]" id="create_user_email" class="form-control" type="text" placeholder="<?php echo Lang::get('Email'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_user_phone"><?php echo Lang::get('Téléphone'); ?></label>
+                <div class="col-lg-6">
+                    <input name="create[user][phone]" id="create_user_phone" class="form-control" type="text" placeholder="<?php echo Lang::get('Téléphone'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_user_password"><?php echo Lang::get('Mot de passe'), "*"; ?></label>
+                <div class="col-lg-6">
+                    <input name="create[user][password]" id="create_user_password" class="form-control" type="password" placeholder="<?php echo Lang::get('Mot de passe'), " (8 min)"; ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_user_repeat_password"><?php echo Lang::get('Re mot de passe'), "*"; ?></label>
+                <div class="col-lg-6">
+                    <input name="create[user][repeat_password]" id="create_user_repeat_password" class="form-control" type="password" placeholder="<?php echo Lang::get('Re mot de passe'), " (8 min)"; ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div> 
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="captcha"><?php echo Lang::get('Captcha'), "*"; ?></label>
+                <div class="col-lg-6">
+                    <?php echo HTML::image(Captcha::img(), 'Captcha image'); ?>
+                    <input name="captcha" id="captcha" class="form-control" type="text" placeholder="<?php echo Lang::get('Captcha'),"*"; ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div> 
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-6">
+                    <button type="submit" class="btn btn-primary" name="create[submit]"><?php echo Lang::get('Creer'); ?></button>
+                    <a href="<?php echo URL::route('/'); ?>"><button type="button" class="btn btn-danger pull-right"><?php echo Lang::get('Annuler'); ?></button></a>
+                </div>
+            </div>	
+        </div>
+    </form>
+</div>
+<!-- eo list tab -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,141 @@
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('admin.templates.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('admin.agents.tab_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="tab-pane <?php echo $active_tab == 'agents_create' ? 'active' : NULL; ?>" id="tab_agents_create">
+    <form action="" method="post" name="agents_create" class="form-horizontal">
+        <div class="admin-form">
+            <?php
+            if (isset($errors)) {
+                foreach ($errors as $error) {
+                    ?>
+                    <div class="text-danger"><?php echo array_get($error, 0); ?></div>
+                    <?php
+                }
+            }
+            ?>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_fName"><?php echo Lang::get('Prenom'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[agent][fName]" id="create_agent_fName" class="form-control" type="text" placeholder="<?php echo Lang::get('Prenom'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_lName"><?php echo Lang::get('Nom'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[agent][lName]" id="create_agent_lName" class="form-control" type="text" placeholder="<?php echo Lang::get('Nom'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_rank"><?php echo Lang::get('Rank'); ?></label>
+                <div class="col-lg-6">
+                    <div class="col-lg-4">
+                        <input name="create[agent][lRank]" id="create_agent_lRank" class="form-control" type="text" placeholder="<?php echo Lang::get('Min rank'); ?>">
+                    </div>
+                    <div class="col-lg-4">
+                        <input name="create[agent][hRank]" id="create_agent_hRank" class="form-control" type="text" placeholder="<?php echo Lang::get('Max rank'); ?>">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_phone"><?php echo Lang::get('Téléphone'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[agent][phone]" id="create_agent_phone" class="form-control" type="text" placeholder="<?php echo Lang::get('Téléphone'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_email"><?php echo Lang::get('Email'), "*"; ?></label>
+                <div class="col-lg-4">
+                    <input name="create[agent][email]" id="create_agent_email" class="form-control" type="text" placeholder="<?php echo Lang::get('Email'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_sex"><?php echo Lang::get('Sexe'); ?></label>
+                <div class="col-lg-4">
+                    <select name="create[agent][sex]" id="create_agent_sex" class="form-control" >
+                        <option value="male"><?php echo Lang::get('Male'); ?></option>
+                        <option value="female"><?php echo Lang::get('Female'); ?></option>                        
+                    </select>
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_nif"><?php echo Lang::get('NIF'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[agent][nif]" id="create_agent_nif" class="form-control" type="text" placeholder="<?php echo Lang::get('NIF'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_cin"><?php echo Lang::get('CIN'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[agent][cin]" id="create_agent_cin" class="form-control" type="text" placeholder="<?php echo Lang::get('CIN'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_birthday"><?php echo Lang::get('Date de naissance'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[agent][birthday]" id="create_agent_birthday" class="form-control" type="text" placeholder="<?php echo Lang::get('Date de naissance'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_department"><?php echo Lang::get('Department'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[agent][department]" id="create_agent_department" class="form-control" type="text" placeholder="<?php echo Lang::get('Department'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_city"><?php echo Lang::get('Ville'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[agent][city]" id="create_agent_city" class="form-control" type="text" placeholder="<?php echo Lang::get('Ville'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_cSection"><?php echo Lang::get('Section communale'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[agent][cSection]" id="create_agent_cSection" class="form-control" type="text" placeholder="<?php echo Lang::get('Section communale'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_so"><?php echo Lang::get('Numéro so'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[agent][so]" id="create_agent_so" class="form-control" type="text" placeholder="<?php echo Lang::get('Numéro so'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_idResepag"><?php echo Lang::get('IdResepag'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[agent][idResepag]" id="create_agent_idResepag" class="form-control" type="text" placeholder="<?php echo Lang::get('IdResepag'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <?php /*
+              <div class="form-group">
+              <label class="col-lg-2 control-label" for="create_agent_tTotal"><?php echo Lang::get('Quantité totale'); ?></label>
+              <div class="col-lg-4">
+              <input name="create[agent][tTotal]" id="create_agent_tTotal" class="form-control" type="text" placeholder="<?php echo Lang::get('Quantité totale'); ?>">
+              <span class="help-inline"></span>
+              </div>
+             */ ?>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-primary" name="create[submit]"><?php echo Lang::get('Creer'); ?></button>
+            </div>
+        </div>
+</div>
+</form>
+</div>
+<!-- eo list tab -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

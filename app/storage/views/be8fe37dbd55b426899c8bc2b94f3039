@@ -1,0 +1,15 @@
+
+<?php $__env->startSection('content'); ?>
+<div class="">
+    <div class="col-lg-3">
+    </div>
+    <div class="well col-lg-6">
+        <legend><?php echo Lang::get('Konfimasyon'); ?></legend>
+        <h5><?php echo Lang::get("Mèsi pou enskripsyon an. Admin Sib ap kontaktew avan 48 tè.");?></h5>	
+                <div class="pull-right"><a href="/" class="btn btn-danger"><?php echo Lang::get('Koneksyon'); ?></a></div>
+
+    </div>
+</div>
+<!-- eo list tab -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

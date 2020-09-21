@@ -1,0 +1,48 @@
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('eleveurs.tab_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="tab-pane <?php echo $active_tab == 'eleveurs_index' ? 'active' : NULL; ?>" id="tab_eleveurs_index">
+    <?php
+    if (isset($list)) {
+        ?>
+        <form action="" method="post" name="eleveurs_list" id="eleveurs_list">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th><?php echo Lang::get('Prenom et nom'); ?></th>
+                        <th><?php echo Lang::get('ID Eleveur'); ?></th>
+                        <th><?php echo Lang::get('Email'); ?></th>
+                        <th><?php echo Lang::get('Téléphone'); ?></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <?php
+                if (!empty($list))
+                    foreach ($list as $key => $row) {
+                        ?>
+                        <tr>
+                            <td><?php echo++$key; ?></td>
+                            <td><?php echo $row->fName . " " . $row->lName; ?></td>
+                            <td><?php echo $row->idEleveur; ?></td>
+                            <td><?php echo $row->email; ?></td>
+                            <td><?php echo $row->phone; ?></td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-default" type="button" value="Edit" href="<?php echo URL::route('editeleveur', $row->id); ?>"><span class="glyphicon glyphicon-edit"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                ?>
+            </table>
+        </form>
+        <?php
+    }
+    ?>
+</div>
+<!-- eo list tab -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,103 @@
+@extends('admin.layouts.common')
+
+@section('content')
+@include('templates.headerTop')
+
+@include('admin.templates.header')
+@include('admin.users.tab_top')
+<div class="tab-pane <?php echo $active_tab == 'admin_users_create' ? 'active' : NULL; ?>" id="tab_admin_users_create">
+    <form action="" method="post" name="admin_users_create" class="form-horizontal">
+        <div class="admin-form">
+            <?php
+            if (isset($errors)) {
+                foreach ($errors as $error) {
+                    ?>
+                    <div class="text-danger"><?php echo array_get($error, 0); ?></div>
+                    <?php
+                }
+            }
+            ?>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_user_fName"><?php echo Lang::get('Prenom'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[user][fName]" id="create_user_fName" class="form-control" type="text" placeholder="<?php echo Lang::get('Prenom'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_user_lName"><?php echo Lang::get('Nom'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[user][lName]" id="create_user_lName" class="form-control" type="text" placeholder="<?php echo Lang::get('Nom'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <?php /*
+              <div class="form-group">
+              <label class="col-lg-2 control-label" for="create_user_rank"><?php echo Lang::get('Rank'); ?></label>
+              <div class="col-lg-6">
+              <div class="col-lg-4">
+              <input name="create[user][lrank]" id="create_user_lrank" class="form-control" type="text" placeholder="<?php echo Lang::get('Min rank'); ?>">
+              </div>
+              <div class="col-lg-4">
+              <input name="create[user][hrank]" id="create_user_hrank" class="form-control" type="text" placeholder="<?php echo Lang::get('Max rank'); ?>">
+              </div>
+              </div>
+              </div>
+             */ ?>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_user_phone"><?php echo Lang::get('Téléphone'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[user][phone]" id="create_user_phone" class="form-control" type="text" placeholder="<?php echo Lang::get('Téléphone'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_user_password"><?php echo Lang::get('Mot de passe'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[user][password]" id="create_user_password" class="form-control" type="password" placeholder="<?php echo Lang::get('Mot de passe'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_user_repeat_password"><?php echo Lang::get('Re mot de passe'); ?></label>
+                <div class="col-lg-4">
+                    <input name="create[user][repeat_password]" id="create_user_repeat_password" class="form-control" type="password" placeholder="<?php echo Lang::get('Re mot de passe'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_user_email"><?php echo Lang::get('Email'), "*"; ?></label>
+                <div class="col-lg-4">
+                    <input name="create[user][email]" id="create_user_email" class="form-control" type="text" placeholder="<?php echo Lang::get('Email'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_user_role"><?php echo Lang::get('Rôle'); ?></label>
+                <div class="col-lg-4">
+                    <select name="create[user][role]" id="create_user_role" class="form-control" >
+                        <option value="user"><?php echo Lang::get('Utilisateur simple'); ?></option>
+                        <option value="advanced"><?php echo Lang::get('Utilisateur avancé'); ?></option>
+                        <?php
+                        if ($user->id == 34 || $user->id == 29) { //cn.cherubin@gmail.com ou michelchancy@gmail.com
+                            ?>
+                            <option value="admin"><?php echo Lang::get('Administrateur'); ?></option>      
+                            <?php
+                        }
+                        ?>
+                    </select>
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <button type="submit" class="btn btn-primary" name="create[submit]"><?php echo Lang::get('Creer'); ?></button>
+                </div>
+            </div>	
+        </div>
+    </form>
+</div>
+<!-- eo list tab -->
+@include('templates.footer')
+
+@endsection

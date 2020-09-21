@@ -1,0 +1,53 @@
+<div class="container">
+    <?php
+    if ($page_id == 'eleveurs_index')
+    {
+        ?>
+        <div class="pull-right">
+            <form class="navbar-form navbar-left" role="search" action="{{URL::route('eleveurs')}}">
+                <div class="form-group">
+                    <input name="search" type="text" class="form-control" placeholder="#cin, Siyati" value="<?php echo (isset($search)) ? $search : NULL ?>">
+                </div>
+                <button type="submit" class="btn btn-info">Jwenn</button>
+            </form>
+        </div>
+        <?php
+    }
+    ?>
+    <p class="titre_top"><?php echo 'sib / pati Elvè yo'; ?></p>
+
+    <?php //Application::show_messages($messages);  ?>
+
+    <ul class="nav nav-tabs" id="admin-eleveurs-tab">
+        <li class="<?php echo $page_id == 'eleveurs_index' ? 'active' : NULL; ?>" >
+            <a href="{{URL::route('eleveurs')}}">
+                <?php echo 'Lis elvè yo'; ?>
+            </a>
+        </li>
+        <?php
+        if ($user->role != 'user')
+        {
+            ?>
+            <li class="<?php echo $page_id == 'eleveurs_create' ? 'active' : NULL; ?>">
+                <a href="{{URL::route('createeleveur')}}" >
+                    <?php echo 'Anrejistre yon elvè'; ?>
+                </a>
+            </li>
+            <?php
+        }
+        ?>
+        <?php
+        if (isset($edit_item))
+        {
+            ?>
+            <li class="<?php echo $page_id == 'eleveurs_edit' ? 'active' : NULL; ?>" >
+                <a href="#tab_eleveurs_edit" data-toggle="tab">
+                    <?php echo 'Modifiye yon elvè'; ?>
+                </a>
+            </li>
+            <?php
+        }
+        ?>
+    </ul>
+
+    <div class="tab-content">

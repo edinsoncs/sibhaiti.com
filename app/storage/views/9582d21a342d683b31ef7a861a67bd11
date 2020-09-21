@@ -1,0 +1,187 @@
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('admin.templates.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('admin.animals.tab_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="tab-pane <?php echo $active_tab == 'animals_edit' ? 'active' : NULL; ?>" id="tab_animals_edit">
+    <form action="" method="post" name="animals_edit" class="form-horizontal">
+        <div class="admin-form">
+            <?php
+            if (isset($errors)) {
+                foreach ($errors as $error) {
+                    ?>
+                    <div class="text-danger"><?php echo array_get($error, 0); ?></div>
+                    <?php
+                }
+            }
+            ?>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="edit_animal_tag"><?php echo Lang::get('Tag'); ?></label>
+                    <div class="col-lg-8">
+                        <input name="edit[animal][tag]" id="edit_animal_tag" class="form-control" type="text" placeholder="<?php echo Lang::get('Tag'); ?>" value="<?php echo array_get($edit_item, 'tag'); ?>">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="edit_animal_carnet"><?php echo Lang::get('Carnet'); ?></label>
+                    <div class="col-lg-8">
+                        <input name="edit[animal][carnet]" id="edit_animal_carnet" class="form-control" type="text" placeholder="<?php echo Lang::get('Carnet'); ?>" value="<?php echo array_get($edit_item, 'carnet'); ?>">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="edit_animal_type"><?php echo Lang::get('Type'); ?></label>
+                    <div class="col-lg-8">
+                        <select name="edit[animal][type]" id="edit_animal_type" class="form-control" >
+                            <option value="vache" <?php echo (array_get($edit_item, 'type') == 'vache') ? 'selected="selected"' : NULL; ?>><?php echo Lang::get('Vache'); ?></option>
+                            <option value="boeuf" <?php echo (array_get($edit_item, 'type') == 'boeuf') ? 'selected="selected"' : NULL; ?>><?php echo Lang::get('Boeuf'); ?></option>
+                            <option value="taureau" <?php echo (array_get($edit_item, 'type') == 'taureau') ? 'selected="selected"' : NULL; ?>><?php echo Lang::get('Taureau'); ?></option>
+                            <option value="veau" <?php echo (array_get($edit_item, 'type') == 'veau') ? 'selected="selected"' : NULL; ?>><?php echo Lang::get('Veau'); ?></option>
+                        </select>
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="edit_animal_birthday"><?php echo Lang::get('Date de naissance'); ?></label>
+                    <div class="col-lg-8">
+                        <input name="edit[animal][birthday]" id="edit_animal_birthday" class="form-control" type="text" placeholder="<?php echo Lang::get('Date de naissance'); ?>" value="<?php echo array_get($edit_item, 'birthday'); ?>">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="edit_animal_isVaccinated"><?php echo Lang::get('Is Vaccined'); ?></label>
+                    <div class="col-lg-8">
+                        <select name="edit[animal][isVaccinated]" id="edit_animal_isVaccinated" class="form-control">
+                            <option value="">--</option>
+                            <option value="oui" <?php echo (array_get($edit_item, 'isVaccinated') == 'oui') ? 'selected="selected"' : NULL; ?>><?php echo Lang::get('Oui'); ?></option>
+                            <option value="non" <?php echo (array_get($edit_item, 'isVaccinated') == 'non') ? 'selected="selected"' : NULL; ?>><?php echo Lang::get('Non'); ?></option>                        
+                        </select>
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="edit_animal_mTag"><?php echo Lang::get('Tag mere'); ?></label>
+                    <div class="col-lg-8">
+                        <input name="edit[animal][mTag]" id="edit_animal_mTag" class="form-control" type="text" placeholder="<?php echo Lang::get('Tag mere'); ?>" value="<?php echo array_get($edit_item, 'mTag'); ?>">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="edit_animal_fTag"><?php echo Lang::get('Tag pere'); ?></label>
+                    <div class="col-lg-8">
+                        <input name="edit[animal][fTag]" id="edit_animal_fTag" class="form-control" type="text" placeholder="<?php echo Lang::get('Tag pere'); ?>" value="<?php echo array_get($edit_item, 'fTag'); ?>">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="edit_animal_eleveur"><?php echo Lang::get('Eleveur'); ?></label>
+                    <div class="col-lg-8">
+                        <select name="edit[animal][eleveur]" id="edit_animal_eleveur" class="form-control" >
+                            <option value="">--</option>
+                            <?php
+                            if (isset($eleveurs)) {
+                                foreach ($eleveurs as $eleveur) {
+                                    ?>
+                                    <option value="<?php echo $eleveur->id; ?>" <?php echo (array_get($edit_item, 'eleveur') == $eleveur->id) ? 'selected="selected"' : NULL; ?>><?php echo $eleveur->getFullNameAttribute(); ?></option>
+                                    <?php
+                                }
+                            }
+                            ?>                   
+                        </select>
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="edit_animal_dDate"><?php echo Lang::get('Date de décès'); ?></label>
+                    <div class="col-lg-8">
+                        <input name="edit[animal][dDate]" id="edit_animal_dDate" class="form-control" type="text" placeholder="<?php echo Lang::get('Date de décès'); ?>" value="<?php echo array_get($edit_item, 'dDate'); ?>">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" class="btn btn-primary" name="edit[submit]"><?php echo Lang::get('Editer'); ?></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h4>Notifications</h4>
+                <div class="form-group">
+                    <div class="col-lg-4">
+                        <select  class="form-control" name="notification-type" id="notification-type">
+                            <option value=""><?php echo 'Type'; ?></option>
+                            <option value="vol"><?php echo 'Vol'; ?></option>
+                            <option value="deces"><?php echo 'Deces'; ?></option>
+                            <option value="naissance"><?php echo 'Naissance'; ?></option>
+                            <option value="autre"><?php echo 'Autre'; ?></option>
+                        </select>
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea name="notification-desc" id="notification-desc" type="text" class="form-control" placeholder="<?php echo 'Description'; ?>"></textarea>
+                    </div>
+                    <div class="col-lg-1">
+                        <button type="button" id="create-notification" class="btn btn-info"><?php echo '+'; ?></button>
+                    </div>
+                </div>
+                <table class="table table-hover" id="table-notification">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th><?php echo Lang::get('Type'); ?></th>
+                            <th><?php echo Lang::get('Date'); ?></th>
+                            <th><?php echo Lang::get('Description'); ?></th>
+                            <th><?php echo Lang::get('Status'); ?></th>
+                        </tr>
+                    </thead>
+                    <?php
+                    if (isset($notifications) && !empty($notifications))
+                        foreach ($notifications as $key => $row) {
+                            ?>
+                            <tr>
+                                <td><?php echo++$key; ?></td>
+                                <td><?php echo ucfirst($row->type); ?></td>
+                                <td><?php echo $row->date; ?></td>
+                                <td><?php echo $row->desc; ?></td>
+                                <td class="<?php echo ($row->isActv) ? 'green' : 'red'; ?>"><?php echo $row->isActv ? 'Active' : 'Deactive'; ?></td>
+                            </tr>
+                            <?php
+                        }
+                    ?>
+                </table>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#create-notification').click(function(){
+            console.log($('#notification-desc').val());
+            if($('#notification-desc').val()!="" && $('#notification-type').val()!="" ){
+                var type = $('#notification-type').val();
+                var text = $('#notification-desc').val();
+                var date = '<?php echo date('d-m-Y[H:i]'); ?>'
+
+                var comment = new Array();
+                comment['type']= type;
+                comment['text']= text;
+                comment['date']= date;
+
+                comments.push(comment);
+
+                var count = comments.length-1;
+				
+                var table = $('#table-notification').find('tbody:first');
+                table.after( '<tr><td>' + '<input type="hidden" name="comments['+count+'][type]" value="'+type+'" id="comments['+count+'][type]"/>'+type.charAt(0).toUpperCase() + type.slice(1)+'</td><td>'
+                    + '<textarea class="xlarge" type="text" name="comments['+count+'][text]" id="comments['+count+'][text]">'+text+'</textarea></td><td>'
+                    + '<input type="hidden" name="comments['+count+'][date]" value="'+date+'" id="comment['+count+']"/>'+date+'</td><td>' 
+                    + '<div title='+count+' data='+count+' class="btn btn-danger btn-remove">X</div>'+'</td></tr>' );                         
+            } 
+            else{
+                alert('Your comment cannot be empty');
+            }
+    });
+});
+</script>     
+<!-- eo list tab -->
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

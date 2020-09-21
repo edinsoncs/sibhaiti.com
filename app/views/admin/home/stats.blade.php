@@ -1,0 +1,48 @@
+@extends('admin.layouts.common')
+@section('content')
+@include('templates.headerTop')
+@include('admin.templates.header')
+<div class="container">
+    
+     <p class="titre_top"><?php echo 'sib / rapò tout depatman yo'; ?></p>
+    
+    <div id="row">
+        
+        
+        <?php
+        if (isset($departments) && !empty($departments))
+        {
+            foreach ($departments as $dept)
+            {
+                if (array_get($dept, 'id'))
+                {
+                    ?>
+                    <!--<div class="col-lg-3 dept-box">-->
+                    <legend><a href="<?php echo URL::route('admindepartment', array_get($dept, 'id')); ?>"><?php echo array_get($dept, 'name'); ?></a>
+
+                    </legend>
+                    <ul>
+                        <li><a href="<?php echo URL::route('adminanimals', array_get($dept, 'id')); ?>"><?php echo 'Bèf' . " (" . User::deptCounter('animal', array_get($dept, 'id')) . ")"; ?></a></li>
+                        <li><a href="<?php echo URL::route('adminagents', array_get($dept, 'id')); ?>"><?php echo 'Ajan' . " (" . User::deptCounter('agent', array_get($dept, 'id')) . ")"; ?></a></li>
+                        <li><a href="<?php echo URL::route('admineleveurs', array_get($dept, 'id')); ?>"><?php echo 'Elvè' . " (" . User::deptCounter('eleveur', array_get($dept, 'id')) . ")"; ?></a></li>
+                        <li><a href="<?php echo URL::route('adminabbatages', array_get($dept, 'id')); ?>"><?php echo 'Abataj ' . " (" . User::deptCounter('abbatage', array_get($dept, 'id')) . ")"; ?></a></li>
+                        <ul>
+                            <li class="dlist"><?php echo 'Estimasyon Kabrit' . " (" . Abattoir::betDeptCounter(array_get($dept, 'id'), 'kabri') . ")"; ?></li>
+                            <li class="dlist"><?php echo 'Estimasyon Mouton' . " (" . Abattoir::betDeptCounter(array_get($dept, 'id'), 'mouton') . ")"; ?></li>
+                            <li class="dlist"><?php echo 'Estimasyon Kochon' . " (" . Abattoir::betDeptCounter(array_get($dept, 'id'), 'kochon') . ")"; ?></li>
+                            <li class="dlist"><?php echo 'Estimasyon Bèf' . " (" . Abattoir::betDeptCounter(array_get($dept, 'id'), 'bef') . ")"; ?></li>
+                            <li class="dlist"><?php echo 'Total Bèf ki Anrejistre' . " (" . Abattoir::notificationDeptCounter(array_get($dept, 'id')) . ")"; ?></li>
+                        </ul>
+                    </ul>
+                  
+                    <?php
+                }
+            }
+        }
+        ?>
+    </div>
+</div>
+
+@include('templates.footer')
+
+@endsection

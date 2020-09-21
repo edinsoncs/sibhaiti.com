@@ -1,0 +1,285 @@
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.headerTop', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('templates.header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php echo $__env->make('agents.tab_top', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="tab-pane <?php echo $active_tab == 'agents_create' ? 'active' : NULL; ?>" id="tab_agents_create">
+    <form action="" method="post" name="agents_create" class="form-horizontal">
+        <div class="user-form">
+            <?php
+            if (isset($errors))
+            {
+                foreach ($errors as $error)
+                {
+                    ?>
+                    <div class="text-danger"><?php echo array_get($error, 0); ?></div>
+                    <?php
+                }
+            }
+            ?>
+            <legend>Enfòmasyon sou moun nan</legend>
+            <h4>Silvouplè, ranpli tout chan ki gen <span class="req">*</span></h4>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_lName"><?php echo Lang::get('Siyati'); ?><span class="req">*</span></label>
+                <div class="col-lg-5">
+                    <input name="create[agent][lName]" id="create_agent_lName" class="form-control" maxlength="30" type="text" placeholder="<?php echo Lang::get('Siyati'); ?>" value="<?php echo array_get($item_arr, 'lName'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_fName"><?php echo Lang::get('Non'); ?><span class="req">*</span></label>
+                <div class="col-lg-5">
+                    <input name="create[agent][fName]" id="create_agent_fName" class="form-control" type="text" maxlength="30" placeholder="<?php echo Lang::get('Non'); ?>" value="<?php echo array_get($item_arr, 'fName'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>    
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_phone"><?php echo Lang::get('Telefòn'); ?></label>
+                <div class="col-lg-5">
+                    <input name="create[agent][phone]" id="create_agent_phone" class="form-control" maxlength="9" type="phone" placeholder="<?php echo Lang::get('3634-4098'); ?>" value="<?php echo array_get($item_arr, 'phone'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_phone2"><?php echo Lang::get('Telefòn2'); ?></label>
+                <div class="col-lg-5">
+                    <input name="create[agent][phone2]" id="create_agent_phone2" class="form-control" maxlength="9" type="phone" placeholder="<?php echo Lang::get('3634-0000'); ?>" value="<?php echo array_get($item_arr, 'phone2'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+		
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_sex"><?php echo Lang::get('Sèks'); ?><span class="req">*</span></label>
+                <div class="col-lg-5">
+                    <select name="create[agent][sex]" id="create_agent_sex" class="form-control" >
+                        <option value=""><?php echo Lang::get('---'); ?></option>
+                        <option value="m" <?php echo (array_get($item_arr, 'sex') == 'm') ? 'selected="selected"' : NULL; ?>><?php echo Lang::get('Gason'); ?></option>
+                        <option value="f" <?php echo (array_get($item_arr, 'sex') == 'f') ? 'selected="selected"' : NULL; ?>><?php echo Lang::get('Fi'); ?></option>                             
+                    </select>
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_birthday"><?php echo Lang::get('Dat Nesans'); ?></label>
+                <div class="col-lg-5">
+                    <input name="create[agent][birthday]" id="create_agent_birthday" class="form-control" maxlength="10" type="text" placeholder="<?php echo "01/01/1804"; ?>" value="<?php echo array_get($item_arr, 'birthday'); ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_type"><?php echo Lang::get('Tip Ajan'); ?><span class="req">*</span></label>
+                <div class="col-lg-5">
+                    <select name="create[agent][type]" id="create_agent_type" class="form-control" >
+                        <option value=""><?php echo Lang::get('---'); ?></option>
+                        <option value="ai" <?php echo (array_get($item_arr, 'type') == 'ai') ? 'selected="selected"' : NULL; ?>><?php echo Lang::get('Ajan Idantifikatè Abataj (AIB)'); ?></option>
+                        <option value="ev" <?php echo (array_get($item_arr, 'type') == 'ev') ? 'selected="selected"' : NULL; ?>><?php echo Lang::get('Ajan Kontwòl Abataj (AKA)'); ?></option> 
+                        <option value="aiev" <?php echo (array_get($item_arr, 'type') == 'aiev') ? 'selected="selected"' : NULL; ?>><?php echo Lang::get('Ajan Alafwa (AIB, AKA)'); ?></option>                
+                    </select>
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <legend>Nimewo MATRIKIL YO</legend>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_cin"><?php echo Lang::get('CIN'); ?><span class="req">*</span></label>
+                <div class="col-lg-5"> 
+                    <input name="create[agent][cin]" id="create_agent_cin" class="form-control" type="text"  placeholder="<?php echo "64-31-02-2132-43-00003"; ?>" value="<?php echo array_get($item_arr, 'cin'); ?>"/>
+                    <span class="help-inline">Si moun nan pa gen cin mete sèt zero devan nif li (ex: 00-00-00-0132-43-00003)</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_so"><?php echo Lang::get('Nimewo so'); ?><span class="req">*</span></label>
+                <div class="col-lg-5">
+                    <input name="create[agent][so]" id="create_agent_so" style="text-transform:uppercase;" class="form-control" maxlength="8" type="text" placeholder="<?php echo "HTI-1234"; ?>" value="<?php echo array_get($item_arr, 'so'); ?>">
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <legend>ADRÈS</legend>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_department_1"><?php echo Lang::get('Depatman'); ?><span class="req">*</span></label>
+                <div class="col-lg-5">
+                    <select name="create[agent][department]" id="create_agent_department_1" class="form-control">
+                        <option value="">Chwazi depatman...</option>
+                        <?php
+                        foreach ($departments as $dept)
+                        {
+                            ?>
+                            <option value="<?php echo array_get($dept, 'id'); ?>" <?php echo (array_get($item_arr, 'department') == array_get($dept, 'id')) ? 'selected="selected"' : NULL; ?>><?php echo array_get($dept, 'name'); ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_city"><?php echo Lang::get('Komin'); ?><span class="req">*</span></label>
+                <div class="col-lg-5">
+                    <select name="create[agent][city]" id="create_agent_city" class="form-control" >  
+                        <option value="">Chwazi komin...</option>
+                    </select>
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="create_agent_cSection"><?php echo Lang::get('Seksyon'); ?><span class="req">*</span></label>
+                <div class="col-lg-5">
+                    <select name="create[agent][cSection]" id="create_agent_cSection" class="form-control" >  
+                        <option value="">Seksyon...</option>
+                    </select>
+                    <?php /*
+                      <input name="create[agent][cSection]" id="create_agent_cSection" maxlength="20" class="form-control" type="text" placeholder="<?php echo Lang::get('Seksyon'); ?>">
+                     */ ?>
+                    <span class="help-inline"></span>
+
+                </div>
+            </div>
+            
+            <legend>VERIFIKASYON MATRIKIL YO</legend>
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="cin2"><?php echo Lang::get('CIN'); ?><span class="req">*</span></label>
+                <div class="col-lg-5">
+                    <input id="cin2" class="form-control" type="text" placeholder="<?php echo "64-31-02-2132-43-00003"; ?>" value="<?php echo array_get($item_arr, 'cin'); ?>"/>
+                    <span class="help-inline">Si moun nan pa gen cin mete sèt zero devan nif li (ex: 00-00-00-0132-43-00003)</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label" for="so2"><?php echo Lang::get('Nimewo so'); ?><span class="req">*</span></label>
+                <div class="col-lg-5">
+                    <input id="so2" class="form-control" type="text" placeholder="<?php echo "HTI-1234"; ?>" maxlength="8" style="text-transform:uppercase;" value="<?php echo array_get($item_arr, 'so'); ?>"/>
+                    <span class="help-inline"></span>
+                </div>
+            </div>
+           
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <a href="<?php echo URL::route('agents'); ?>"class="btn btn-danger">Anile</a>
+                    <button type="submit" class="btn btn-primary" name="create[submit]" onClick="return enregAgent();"><?php echo Lang::get('Anrejistre Ajan'); ?></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- eo list tab -->
+<script type="text/javascript">   
+    var departments = <?php echo (!empty($departments)) ? json_encode($departments) : "{}"; ?>; 
+    $(document).ready(function(){
+        $(function() {
+            $.mask.definitions['~'] = "[+-]";
+            $("#create_agent_cin").mask("99-99-99-9999-99-99999");
+            $("#cin2").mask("99-99-99-9999-99-99999");
+            
+            $("#create_agent_birthday").mask("99/99/9999");
+            $("#create_agent_phone").mask("9999-9999");
+			 $("#create_agent_phone2").mask("9999-9999");
+			 
+			 
+			 
+			 
+            $("input").blur(function() {
+                $("#info").html("Unmasked value: " + $(this).mask());
+            }).dblclick(function() {
+                $(this).unmask();
+            });
+        });
+        
+        $('#create_agent_department_1').change(function(){
+            var dept = $('#create_agent_department_1').val();         
+            var  cities = [];
+            
+            if(typeof dept != 'undefined'){
+                
+                for(var j =0 ; j<departments.length;j++ )
+                {
+                    if(departments[j].id == dept)
+                    {
+                        cities = departments[j].cities;
+                        break;
+                    }
+                }
+                if(cities.length != 0)
+                {
+                    //console.log(dept);
+                    //console.log(cities);
+                    // clear the select
+                    $("#create_agent_city").empty();
+                    var option = $('<option></option>').attr({
+                        value : null
+                    })
+                    .text('Chwazi komin...');
+                        
+                    //add the option to the select
+                    $("#create_agent_city").append(option);
+                    for(var i = 0; i<cities.length; i++){
+                        var value = cities[i].id;
+                        var text = cities[i].name;
+                        // create an option with attributes 
+                        var option = $('<option></option>').attr({
+                            value : value
+                        })
+                        .text(text);
+                        
+                        //add the option to the select
+                        $("#create_agent_city").append(option);
+                    }
+                }
+            }
+        });
+        
+        $('#create_agent_city').change(function(){
+            var city_id = $('#create_agent_city').val();
+            var dept = $('#create_agent_department_1').val();
+            if(typeof city_id != 'undefined' && typeof dept != 'undefined')
+            {
+                var cities = [];
+                var sections = [];
+                for(var j =0 ; j<departments.length;j++ )
+                {
+                    if(departments[j].id == dept)
+                    {
+                        cities = departments[j].cities;
+                        break;
+                    }
+                }
+                if(cities.length != 0)
+                {
+                    for(var k =0 ; k<cities.length;k++ )
+                    {
+                        if(cities[k].id == city_id)
+                        {
+                            sections = cities[k].sections;
+                            break;
+                        }
+                    }
+            }
+            if (sections.length != 0)
+            {
+                //console.log(dept);
+                //console.log(cities);
+                // clear the select
+                $("#create_agent_cSection").empty();
+                for(var i = 0; i<sections.length; i++)
+                {
+                    var value = sections[i].id;
+                    var text = sections[i].name;
+                    // create an option with attributes 
+                    var option = $('<option></option>').attr({
+                        value : value
+                    })
+                    .text(text);
+                        
+                    //add the option to the select
+                    $("#create_agent_cSection").append(option);
+                }
+            }
+        }
+    });
+});
+</script> 
+<?php echo $__env->make('templates.footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('layouts.common', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

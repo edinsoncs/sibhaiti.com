@@ -1,0 +1,154 @@
+
+
+root { 
+    display: block;
+}
+.form-signin
+{
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading, .form-signin .checkbox
+{
+    margin-bottom: 10px;
+}
+.form-signin .checkbox
+{
+    font-weight: normal;
+}
+.form-signin .form-control
+{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-signin .form-control:focus
+{
+    z-index: 2;
+}
+.form-signin input[type="email"]
+{
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"]
+{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.account-wall
+{
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.login-title
+{
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+.profile-img
+{
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.need-help
+{
+    margin-top: 10px;
+}
+.new-account
+{
+    display: block;
+    margin-top: 10px;
+}
+.admin-form
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#search_admin
+	{
+		
+		border:1px solid #ccc;
+		background:#D7DFEA;
+		width:90%;
+		height:auto;
+		margin:1em auto;
+		padding: .5em ;
+		overflow:hidden;
+		border-radius:5px;
+	}
+	
+	#search_admin textfield, select, button{
+		margin:.5em 0 .5em 0;
+	}
+	
+	
+	#row
+	{
+		width:90%;
+		height:auto;
+		margin:1em auto;
+		background:#D7DFEA;
+		border:1px solid blue;
+		border-radius:5px;
+	}
+	#row li a {
+		
+		font-size:1em;
+		font-weight:bold;
+		color:#09c;}
+	#row li{
+		
+		font-size:1em;
+		color:#555;
+		font-style:italic;
+		list-style:circle;}
+	#row .dlist {
+		list-style: square;
+		text-transform:lowercase;
+	}
+
+.green
+{
+    color:green; 
+}
+
+.red
+{
+    color:red; 
+}
+
+.dept-box
+{
+    
+    border-radius: 2px;
+    height:auto;
+	padding:.5em;
+	background:#f9f9f9;
+	font-weight:bold;
+	
+    
+    width: 100%;
+    margin: 1em 0 1em 0;
+   
+	float:left;
+}

@@ -1,0 +1,59 @@
+<div class="container">
+    <?php
+    if ($page_id == 'abattoirs_index')
+    {
+        ?>
+        <div class="pull-right">
+            <form action="{{URL::route('adminabattoirs')}}" class="navbar-form navbar-left" role="search">
+<div class="form-group">
+                    <?php $numbers = array(50, 100, 200); ?>
+                    <select class="form-control" name="number">
+                        <!--<option></option>-->
+                        <?php
+                        foreach ($numbers as $num)
+                        {
+                            ?>
+                            <option value="<?php echo $num ?>" <?php echo (isset($number) && $number == $num) ? 'selected="selected"' : NULL; ?>><?php echo $num ?></option>
+                            <?php
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input name="search" type="text" class="form-control" placeholder="Jwenn" value="<?php echo (isset($search)) ? $search : NULL ?>">
+                </div>
+                <button type="submit" class="btn btn-info">Jwenn</button>
+            </form>
+        </div>
+        <?php
+    }
+    ?>
+        <p class="titre_top"><?php echo 'sib / Pati Labatwa Yo'; ?></p>
+
+
+        <ul class="nav nav-tabs" id="admin-abattoirs-tab">
+        <li class="<?php echo $page_id == 'abattoirs_index' ? 'active' : NULL; ?>" >
+            <a href="{{URL::route('adminabattoirs')}}">
+                <?php echo 'Lis Labatwa yo'; ?>
+            </a>
+        </li>
+        <li class="<?php echo $page_id == 'abattoirs_create' ? 'active' : NULL; ?>">
+            <a href="{{URL::route('admincreateabattoir')}}" >
+                <?php echo 'Kreye Labatwa'; ?>
+            </a>
+        </li>
+        <?php
+        if (isset($edit_item))
+        {
+            ?>
+            <li class="<?php echo $page_id == 'abattoirs_edit' ? 'active' : NULL; ?>" >
+                <a href="#tab_abattoirs_edit" data-toggle="tab">
+                    <?php echo 'Modifye Labatwa'; ?>
+                </a>
+            </li>
+            <?php
+        }
+        ?>
+    </ul>
+
+    <div class="tab-content">

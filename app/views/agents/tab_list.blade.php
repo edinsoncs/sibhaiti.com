@@ -1,0 +1,159 @@
+@extends('layouts.common')
+
+@section('content')
+@include('templates.headerTop')
+
+@include('templates.header')
+@include('agents.tab_top')
+<div class="tab-pane <?php echo $active_tab == 'agents_index' ? 'active' : NULL; ?>" id="tab_agents_index">
+    <?php
+    if (isset($list))
+    {
+        ?>
+        <form action="" method="post" name="agents_list" id="agents_list">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><?php echo Lang::get('siyati ak non'); ?></th>
+                        <th><?php echo Lang::get('telefòn'); ?></th>
+                        <th><?php echo Lang::get('#so'); ?></th>
+                        <th><?php echo Lang::get('Depatman'); ?></th>
+                        <th><?php echo Lang::get('komin'); ?></th>
+                        <th><?php echo Lang::get('seksyon '); ?></th>
+                        <th></th>
+						<th></th>
+                    </tr>
+                </thead>
+                <?php
+                if (!empty($list))
+                {
+                    foreach ($list as $key => $row)
+                    {
+                        ?>
+                        <tr>
+                            <td><?php echo $row->lName . ", " . $row->fName; ?></td>
+                            <td><?php echo $row->phone . " <br/>" .$row->phone2; ?></td>
+							<td><?php echo $row->so; ?></td>
+                            <td><?php echo User::getDepartment($row->department); ?></td>
+                           <td><?php echo User::getCity($row->department, $row->city); ?></td>
+                            <td><?php echo User::getSection($row->department, $row->city, $row->cSection); ?></td>
+							<td>
+                                <!--<button class="btn btn-default btn-modal" style="background-color: #FFCC33" data-toggle="modal" data-target="#rankModal" data-id="<?php echo $row->id; ?>" data-name="<?php echo $row->fName . " " . $row->lName; ?>">
+                                    <span class="glyphicon glyphicon-plus" style="color:white"></span>
+                                </button> -->
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-info" type="button" value="Edit" href="<?php echo URL::route('editagent', $row->id); ?>"><span class="glyphicon glyphicon-edit"></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                    }
+                }
+                ?>
+            </table> 
+            <?php echo $list->links(); ?>
+        </form>
+        <?php
+    }
+    ?>
+</div>
+<!-- eo list tab 
+<!-- Modal 
+<div class="modal fade" id="rankModal" tabindex="-1" role="dialog" aria-labelledby="rankLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3 class="modal-title" id="notificationLabel">Ajouter plages de tag</h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <label class="control-label" for="notification-name"><?php echo Lang::get('siyati ak non'); ?></label>
+                        <input readonly name="notification[name]" id="notification-name" maxlength="50" type="text" class="form-control"/>
+                        <input name="notification[rId]" id="notification-rid" class="form-control" type="hidden">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <input name="notification[lRank]" id="notification-lRank" class="form-control" type="text" placeholder="Rank debut *"/>
+                    </div>
+                    <div class="col-lg-12">
+                        <input name="notification[hRank]" id="notification-hRank" class="form-control" type="text" placeholder="Rank fin *"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <label class="control-label" for="notification-date">Date</label>
+                        <input name="notification[date]" id="notification-date" class="form-control" type="text"  placeholder="<?php echo Lang::get('01/01/1804'); ?>" maxlength="10">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <textarea name="notification[desc]" id="notification-desc" maxlength="50" type="text" class="form-control" placeholder="<?php echo 'Esplikasyon [50]'; ?>"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                <button type="button" id="create-rank" class="btn btn-primary">Envoyer</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#notification-date").mask("99-99-9999");
+
+        $('.btn-modal').click(function() {
+            var rId = $(this).attr('data-id');
+            var name = $(this).attr('data-name');
+            $('#notification-rid').val(rId);
+            $('#notification-name').val(name);
+        });
+
+       $('#create-rank').click(function() {
+
+            var rId = $('#notification-rid').val();
+            var lrank = $('#notification-lRank').val();
+            var hrank = $('#notification-hRank').val();
+            var date = $('#notification-date').val();
+            var text = $('#notification-desc').val();
+            var rOb = 'agent';
+            var obj = '#agent-' + rId;
+
+            if (lrank && hrank && rId) {
+
+
+                var data = {rId: rId, lrank: lrank, hrank: hrank, date: date, text: text, rOb: rOb};
+
+                $.ajax({
+                    'url': '<?php echo URL::route('createnotification'); ?>',
+                    'type': 'POST',
+                    'data': data,
+                    'success': function(data) {
+                        //console.log(data);
+                        if (data.status == 'error')
+                        {
+                            alert(data.msg);
+                        }
+                        else
+                        {
+                            $(obj).text(lrank + " -- " + hrank);
+                            $('#rankModal').modal('hide');
+                        }
+                    }
+                });
+            }
+            else {
+                alert('Oups!!! Tout chan yo obligatwa.');
+            }
+        });
+    });
+</script>  
+<!-- eo list tab -->
+@include('templates.footer')
+@endsection
