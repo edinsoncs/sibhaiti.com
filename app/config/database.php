@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'sibagric_sib_db',
-			'username'  => 'sibagric_sibuser',
-			'password'  => 'sibuser',
+			'database'  => 'sibhaiti',
+			'username'  => 'root',
+			'password'  => '25edinson25',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

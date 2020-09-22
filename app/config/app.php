@@ -24,7 +24,7 @@ return array(
       |
      */
 
-    'url' => 'https://sib.agriculture.gouv.ht/',
+    'url' => 'https://sibhaiti.com/',
     /*
       |--------------------------------------------------------------------------
       | Application Timezone

@@ -10,9 +10,9 @@
   | and give it the Closure to execute when that URI is requested.
   |
  */
-	if (App::environment('remote')) {
+	/*if (App::environment('remote')) {
     URL::forceSchema('https');
-	}
+	}*/
 // Admin
 Route::group(array('prefix' => 'admin', 'before' => 'admin'), function()
 {
